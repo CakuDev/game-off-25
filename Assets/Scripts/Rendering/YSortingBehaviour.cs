@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class YSortingBehaviour : MonoBehaviour
 {
+    [Tooltip("Set the Z position only on Start?")]
     [SerializeField] bool isStatic = true;
 
     void Start()
