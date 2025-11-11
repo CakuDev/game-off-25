@@ -32,12 +32,20 @@ public abstract class InteractiveBaseBehaviour : MonoBehaviour
     void OnPlayerEntered(InteractionBehaviour interactionBehaviour)
     {
         interactionBehaviour.AddInteractiveObject(this);
-        interactionIndicator.gameObject.SetActive(true);
     }
 
     void OnPlayerExited(InteractionBehaviour interactionBehaviour)
     {
         interactionBehaviour.RemoveInteractiveObject(this);
+    }
+
+    public void EnableIndicator()
+    {
+        interactionIndicator.gameObject.SetActive(true);
+    }
+
+    public void DisableIndicator()
+    {
         interactionIndicator.gameObject.SetActive(false);
     }
 

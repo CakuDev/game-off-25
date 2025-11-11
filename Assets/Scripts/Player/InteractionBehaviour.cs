@@ -43,6 +43,7 @@ public class InteractionBehaviour : MonoBehaviour
             if(m_objectToInteract == null)
             {
                 m_objectToInteract = interactiveObject;
+                
                 continue;
             }
 
@@ -51,20 +52,26 @@ public class InteractionBehaviour : MonoBehaviour
             float interactiveObjectDistance = Vector2.Distance(transform.position, interactiveObject.transform.position);
             if (interactiveObjectDistance < objectToInteractDistance)
             {
+                m_objectToInteract.DisableIndicator();
                 m_objectToInteract = interactiveObject;
             }
         }
+
+        m_objectToInteract.EnableIndicator();
     }
 
-    // Called from the InteractiveBaseBehaviour
     public void AddInteractiveObject(InteractiveBaseBehaviour interactiveObject)
     {
         m_interactiveObjects.Add(interactiveObject);
     }
 
-    // Called from the InteractiveBaseBehaviour
     public void RemoveInteractiveObject(InteractiveBaseBehaviour interactiveObject)
     {
         m_interactiveObjects.Remove(interactiveObject);
+        if (m_objectToInteract == interactiveObject)
+        {
+            m_objectToInteract.DisableIndicator();
+            m_objectToInteract = null;
+        }
     }
 }
