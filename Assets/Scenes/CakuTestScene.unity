@@ -2046,8 +2046,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5809136650348966097, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1476717830080811368}
   m_SourcePrefab: {fileID: 100100000, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+--- !u!1 &1476717830080811367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5809136650348966097, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+  m_PrefabInstance: {fileID: 1476717830080811366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476717830080811368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476717830080811367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073b4dcbc8ec31447afc377e3d0de2a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBehaviour
+  maxHealth: 4
+  damaged:
+    m_PersistentCalls:
+      m_Calls: []
+  healed:
+    m_PersistentCalls:
+      m_Calls: []
+  died:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &8835192911210654421
 PrefabInstance:
   m_ObjectHideFlags: 0
