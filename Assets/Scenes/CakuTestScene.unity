@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 50977634}
   - component: {fileID: 50977635}
   - component: {fileID: 50977636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: door_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 440378472}
   - component: {fileID: 440378475}
   - component: {fileID: 440378476}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 516660245}
   - component: {fileID: 516660244}
   - component: {fileID: 516660243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: portal_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,7 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 797493525}
   - component: {fileID: 797493524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1433,7 +1433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1406494654}
   - component: {fileID: 1406494653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: foregroundhub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,7 +1526,7 @@ GameObject:
   - component: {fileID: 1482070116}
   - component: {fileID: 1482070118}
   - component: {fileID: 1482070119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terminal_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1898,7 +1898,7 @@ GameObject:
   - component: {fileID: 1741726467}
   - component: {fileID: 1741726466}
   - component: {fileID: 1741726468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cipotrolo_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1999,6 +1999,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2764915372893658942, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764915372893658942, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4107307223241787535, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.34
