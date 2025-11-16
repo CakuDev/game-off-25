@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerMovementBehaviour))]
+[RequireComponent(typeof(HealthBehaviour))]
 public class PlayerDashBehaviour : MonoBehaviour
 {
     [Tooltip("Maximum distance to dash.")]
@@ -25,6 +26,7 @@ public class PlayerDashBehaviour : MonoBehaviour
     InputAction m_moveAction;
     Rigidbody2D m_rigidbody;
     PlayerMovementBehaviour m_playerMovementBehaviour;
+    HealthBehaviour m_healthBehaviour;
     Vector2 m_direction;
     bool m_canDash = true;
 
@@ -39,36 +41,36 @@ public class PlayerDashBehaviour : MonoBehaviour
     void Update()
     {
         // Read movement to save last direction
-        if (m_moveAction.IsInProgress())
+        Vector2 moveValue = m_moveAction.ReadValue<Vector2>();
+        if (m_moveAction.IsInProgress() && moveValue.magnitude > 0.3f)
         {
-            m_direction = m_moveAction.ReadValue<Vector2>();
+            m_direction = moveValue.normalized;
         }
 
         // Dash if action pressed
         if (m_canDash && m_dashAction.WasPressedThisFrame()) 
         {
-            StartCoroutine(PerformDash());               
+            PerformDash();            
         }
     }
 
-    IEnumerator PerformDash()
+    void PerformDash()
     {
-        // Unlock movement and set dash velocity
-        m_canDash = false;
-        m_playerMovementBehaviour.LockMovement();
-        m_rigidbody.excludeLayers += layersToDisable;
-        m_rigidbody.linearVelocity = speed * m_direction;
+        // Check if there's an object in the teleport position ignoring ground obstacles
+        Vector2 objective = ((Vector2) transform.position) + maxDistance * m_direction;
+        int layerMask = ~LayerMask.GetMask("GroundObstacle");
+        RaycastHit2D hits = Physics2D.CircleCast(objective, .1f, m_direction, .1f, layerMask);
+        if (!hits)
+        {
+            transform.position = objective;
+        }
+    }
 
-        yield return new WaitForSeconds(maxDistance/speed);
-
-        // Finish dash and unlock movement
-        m_rigidbody.excludeLayers -= layersToDisable;
-        m_playerMovementBehaviour.UnlockMovement();
-
-
-        yield return new WaitForSeconds(cooldown);
-        
-        // Enable dash after cooldown
-        m_canDash = true;
+    private void OnDrawGizmos()
+    {
+        Vector2 objective = ((Vector2)transform.position) + maxDistance * m_direction;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(objective, objective - maxDistance * m_direction);
+        Gizmos.DrawSphere(objective, .1f);
     }
 }
