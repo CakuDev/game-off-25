@@ -9,14 +9,8 @@ public class PlayerDashBehaviour : MonoBehaviour
 {
     [Tooltip("Maximum distance to dash.")]
     [SerializeField] float maxDistance;
-    [Tooltip("Dash speed.")]
-    [SerializeField] float speed;
     [Tooltip("Time in seconds to wait after a dash to be able to dash again.")]
     [SerializeField] float cooldown;
-    [Tooltip("Time in seconds for the player to avoid damage.")]
-    [SerializeField] float invencibilityTime;
-    [Tooltip("Layers ignored by the player while dashing.")]
-    [SerializeField] LayerMask layersToDisable;
     [Tooltip("Input action to dash.")]
     [SerializeField] InputActionReference dashAction;
     [Tooltip("Input action to control the player's movement.")]
@@ -24,9 +18,6 @@ public class PlayerDashBehaviour : MonoBehaviour
 
     InputAction m_dashAction;
     InputAction m_moveAction;
-    Rigidbody2D m_rigidbody;
-    PlayerMovementBehaviour m_playerMovementBehaviour;
-    HealthBehaviour m_healthBehaviour;
     Vector2 m_direction;
     bool m_canDash = true;
 
@@ -34,8 +25,6 @@ public class PlayerDashBehaviour : MonoBehaviour
     {
         m_dashAction = dashAction.action;
         m_moveAction = moveAction.action;
-        m_rigidbody = GetComponent<Rigidbody2D>();
-        m_playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
     }
 
     void Update()
@@ -63,7 +52,15 @@ public class PlayerDashBehaviour : MonoBehaviour
         if (!hits)
         {
             transform.position = objective;
+            StartCoroutine(WaitForCooldown());
         }
+    }
+
+    IEnumerator WaitForCooldown()
+    {
+        m_canDash = false;
+        yield return new WaitForSeconds(cooldown);
+        m_canDash = true;
     }
 
     private void OnDrawGizmos()
