@@ -11,6 +11,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     
     InputAction m_moveAction;
     Rigidbody2D m_rigidBody;
+    bool m_canMove = true;
 
     void Start()
     {
@@ -21,8 +22,18 @@ public class PlayerMovementBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!m_canMove) return;
         Vector2 movement = m_moveAction.ReadValue<Vector2>();
         m_rigidBody.linearVelocity = speed * movement;
+    }
 
+    public void LockMovement() 
+    {
+        m_canMove = false;
+    }
+
+    public void UnlockMovement()
+    {
+        m_canMove = true;
     }
 }

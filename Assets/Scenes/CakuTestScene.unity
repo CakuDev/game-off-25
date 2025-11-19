@@ -1213,7 +1213,7 @@ GameObject:
   - component: {fileID: 981265542}
   - component: {fileID: 981265541}
   - component: {fileID: 981265543}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: holes_on_the_floor_hub_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1999,6 +1999,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2003573511071071270, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003573511071071270, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2764915372893658942, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
       propertyPath: damage
       value: 1
@@ -2047,15 +2055,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5689135326462831740, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689135326462831740, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5809136650348966097, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5809136650348966097, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421634588333989736, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421634588333989736, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659406837953617819, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659406837953617819, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5809136650348966097, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1476717830080811368}
   m_SourcePrefab: {fileID: 100100000, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+--- !u!1 &1476717830080811367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5809136650348966097, guid: f3b4b2856a16be644a9a04b69e583239, type: 3}
+  m_PrefabInstance: {fileID: 1476717830080811366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476717830080811368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476717830080811367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e39ce5170606da47bd2279330b039a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDashBehaviour
+  maxDistance: 3
+  speed: 20
+  cooldown: 0.25
+  invencibilityTime: 0.5
+  layersToDisable:
+    serializedVersion: 2
+    m_Bits: 512
+  dashAction: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1001 &8835192911210654421
 PrefabInstance:
   m_ObjectHideFlags: 0

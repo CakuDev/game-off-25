@@ -13,6 +13,7 @@ public class HealthBehaviour : MonoBehaviour
     [SerializeField] UnityEvent died;
     
     int m_currentHealth;
+    bool m_canBeHit = true;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class HealthBehaviour : MonoBehaviour
 
     public void ChangeHealth(int variation)
     {
+        if (!m_canBeHit) return;
         m_currentHealth += variation;
         // Limit current health
         m_currentHealth = Mathf.Clamp(m_currentHealth, 0, maxHealth);
