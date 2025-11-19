@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,8 @@ public class PlayerDashBehaviour : MonoBehaviour
     InputAction m_dashAction;
     InputAction m_moveAction;
     Vector2 m_direction;
+    Vector2 m_lastSavePosition;
+    bool m_cooldownFinished = true;
     bool m_canDash = true;
 
     void Start()
@@ -37,14 +40,26 @@ public class PlayerDashBehaviour : MonoBehaviour
         }
 
         // Dash if action pressed
-        if (m_canDash && m_dashAction.WasPressedThisFrame()) 
+        if (m_canDash && m_cooldownFinished && m_dashAction.WasPressedThisFrame()) 
         {
             PerformDash();            
         }
     }
 
+    // Reposition player to last save position if it exists
+    public void Reposition()
+    {
+        if (m_lastSavePosition != null)
+        {
+            transform.position = m_lastSavePosition;
+        }
+    }
+
     void PerformDash()
     {
+        // Save current position as last save position in case of reposition needed
+        m_lastSavePosition = transform.position;
+
         // Check if there's an object in the teleport position ignoring ground obstacles
         Vector2 objective = ((Vector2) transform.position) + maxDistance * m_direction;
         int layerMask = ~LayerMask.GetMask("GroundObstacle");
@@ -58,8 +73,18 @@ public class PlayerDashBehaviour : MonoBehaviour
 
     IEnumerator WaitForCooldown()
     {
-        m_canDash = false;
+        m_cooldownFinished = false;
         yield return new WaitForSeconds(cooldown);
+        m_cooldownFinished = true;
+    }
+
+    public void LockDash()
+    {
+        m_canDash = false;
+    }
+
+    public void UnlockDash()
+    {
         m_canDash = true;
     }
 
@@ -70,4 +95,6 @@ public class PlayerDashBehaviour : MonoBehaviour
         Gizmos.DrawLine(objective, objective - maxDistance * m_direction);
         Gizmos.DrawSphere(objective, .1f);
     }
+
+    
 }
